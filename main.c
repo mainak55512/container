@@ -1,47 +1,34 @@
 #include <container.h>
 #include <stdio.h>
 
+typedef struct {
+	float x;
+	float y;
+} Point;
+
 int main() {
-	Vector* vec = vector(int); // Vector initialized
-	Vector* vec_f = vector(float); // Vector initialized
-
-	// Appending values: int
-	append(int, vec, 5);
-	append(int, vec, 6);
-
+	Vector* vec_f = vector_init(float); // Vector initialized, type: Float
+	
 	// Appending values: float
-	append(float, vec_f, 2.47);
-	append(float, vec_f, 3.47);
-	append(float, vec_f, 5.11);
+	append_value(float, vec_f, 2.47); // directly appending value
 
-	printf("Length: %d\n", length(vec_f));
-	printf("Popped Flt: %f\n", pop(float, vec_f));
+	float u = 6.779;
+	append(vec_f, u); // appending variable value
+	
+	printf("Float Value: %f\n", at(float, vec_f, 1));
+	printf("Popped Float Value: %f\n", pop(float, vec_f));
 
-	printf("Length: %d\n", length(vec_f));
-	printf("Popped Flt: %f\n", pop(float, vec_f));
+	Vector* vec = vector_init(Point); // Vector initialization, type: user-defined struct - Point
+	Point p = {2.55f, 4.69f};
+	append(vec, p);
 
-	printf("Length: %d\n", length(vec_f));
-	printf("Popped Flt: %f\n", pop(float, vec_f));
+	printf("Point Value (x): %f\n", at(Point, vec, 0).x);
 
-	printf("Popped Int: %d\n", pop(int, vec));
-	printf("Length: %d\n", length(vec));
-
-	printf("Popped Int: %d\n", pop(int, vec));
-	printf("Length: %d\n", length(vec));
-
-	append(int, vec, 45);
-	append(int, vec, 23);
-	printf("Length: %d\n", length(vec));
-	printf("Int Value: %d\n", at(int, vec, 0));
-	printf("Int Value: %d\n", pop(int, vec));
-	printf("Int Value: %d\n", pop(int, vec));
-	// printf("Int Value: %d\n", pop(int, vec));
-	printf("Length: %d\n", length(vec));
-	// printf("Float Value: %f\n", at(float, vec_f, 0));
+	printf("Popped Point Value (y): %f\n", pop(Point, vec).y);
 
 	// Freeing the vector
-	free_vector(vec);
-	free_vector(vec_f);
+	vector_free(vec);
+	vector_free(vec_f);
 }
 
 

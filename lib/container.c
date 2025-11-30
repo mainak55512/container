@@ -8,7 +8,7 @@ typedef struct {
 	char* items;
 } Vector;
 
-Vector* vector_init(size_t element_size) {
+Vector* vector_init_impl(size_t element_size) {
 	Vector* vector = (Vector*)malloc(sizeof(Vector));
 	vector->items = NULL;
 	vector->element_size = element_size;
@@ -54,7 +54,7 @@ int length(Vector* vector) {
 	return vector->length;
 }
 
-void free_vector(Vector* vector) {
+void vector_free(Vector* vector) {
 	free(vector->items);
 	free(vector);
 }
