@@ -12,7 +12,7 @@ Vector* vector_init(size_t element_size) {
 	Vector* vector = (Vector*)malloc(sizeof(Vector));
 	vector->items = NULL;
 	vector->element_size = element_size;
-	vector->capacity = 0;
+	vector->capacity = 1;
 	vector->length = 0;
 	return vector;
 }
@@ -25,23 +25,21 @@ void append_impl(Vector* vector, const void* element) {
 		vector->capacity *= 2;
 		vector->items = (char*)realloc(vector->items, vector->capacity * vector->element_size);
 	}
-	// vector->items[vector->length] = element;
 	memcpy((char*)vector->items + (vector->length * vector->element_size), element, vector->element_size);
 	vector->length++;
 }
 
-int pop(Vector* vector) {
-	int popped;
+void* pop_impl(Vector* vector) {
 	if (vector->length > 0) {
-		popped = vector->items[vector->length - 1];
 		vector->length--;
+		return (char*)vector->items + (vector->length  * vector->element_size);
 	}
-	return popped;
+	return NULL;
 }
 
 void* at_impl(Vector* vector, int pos) {
 	if (pos >= 0 && pos < vector->length) {
-		return vector->items + (pos * vector->element_size);
+		return (char*)vector->items + (pos * vector->element_size);
 	}
 	return NULL;
 }
