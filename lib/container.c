@@ -44,9 +44,9 @@ void* at_impl(Vector* vector, int pos) {
 	return NULL;
 }
 
-void replace_at(Vector* vector, int pos, int value) {
+void replace_at_impl(Vector* vector, int pos, const void* value) {
 	if (pos >= 0 && pos < vector->length) {
-		vector->items[pos] = value;
+		memcpy((char*)vector->items + (pos * vector->element_size), value, vector->element_size);
 	}
 }
 

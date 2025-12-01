@@ -7,24 +7,28 @@ typedef struct {
 } Point;
 
 int main() {
-	Vector* vec_f = vector_init(float); // Vector initialized, type: Float
-	
-	// Appending values: float
-	append_value(float, vec_f, 2.47); // directly appending value
-
-	float u = 6.779;
-	append(vec_f, u); // appending variable value
-	
-	printf("Float Value: %f\n", at(float, vec_f, 1));
-	printf("Popped Float Value: %f\n", pop(float, vec_f));
-
 	Vector* vec = vector_init(Point); // Vector initialization, type: user-defined struct - Point
+
 	Point p = {2.55f, 4.69f};
-	append(vec, p);
+	append(Point, vec, p);
+	append(Point, vec, ((Point){3.33f, 4.44f}));
 
 	printf("Point Value (x): %f\n", at(Point, vec, 0).x);
 
-	printf("Popped Point Value (y): %f\n", pop(Point, vec).y);
+	Vector* vec_f = vector_init(float); // Vector initialized, type: Float
+	
+	// Appending values: float
+	float u = 6.779;
+	append(float, vec_f, u); // appending variable value
+	append(float, vec_f, 2.47); // directly appending value
+	
+	printf("Float Value: %f\n", at(float, vec_f, 1));
+
+	// Replace a value at a position
+	float u1 = 2.2222f;
+	replace_at(float, vec_f, 1, u1);
+
+	printf("Float Value: %f\n", at(float, vec_f, 1));
 
 	// Freeing the vector
 	vector_free(vec);
