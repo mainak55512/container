@@ -26,7 +26,7 @@ The main structure for the dynamic array is opaque (`Vector*`). All core functio
 
 ```c
 #include <stdio.h>
-#include "CONTAINER_H.h" 
+#include <container.h>
 
 int main() {
     // 1. Initialize a vector to hold integers
