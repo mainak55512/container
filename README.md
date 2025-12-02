@@ -1,6 +1,6 @@
 # Simple C Vector Container
 
-This library provides a simple, generic dynamic array implementation (similar to `std::vector` in C++) for C, utilizing a single header file and **C preprocessor macros** to offer a type-safe interface. It allows you to create resizable arrays of any data type (`int`, `char*`, `structs`, etc.) without requiring explicit manual memory management for the underlying data block and is compatible with c89 hence no compiler extension required.
+This library provides a simple, generic dynamic array implementation (similar to `std::vector` in C++) for C, utilizing a single header file and **C preprocessor macros** to offer a type-safe interface. It allows you to create resizable arrays of any data type (`int`, `char*`, `structs`, etc.) without requiring explicit manual memory management for the underlying data block.
 
 ---
 
