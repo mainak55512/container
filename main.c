@@ -33,6 +33,16 @@ int main() {
 	// Freeing the vector
 	vector_free(vec);
 	vector_free(vec_f);
+
+	String* st1 = string_from("Mainak ");
+	String* st2 = string_from("Bhattacharjee");
+	String* newStr = string_concat(st1, st2);
+	printf("\nString: %s", string(newStr));
+
+	string_free(st1);
+	string_free(st2);
+	string_free(newStr);
+	// printf("\nString length: %d", string_len(st));
 }
 
 

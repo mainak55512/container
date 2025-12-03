@@ -9,7 +9,7 @@ add_executable(${PROJECT_NAME} main.c)
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
-add_library(container_lib STATIC lib/container.c)
+add_library(container_lib STATIC lib/c_vector.c lib/c_string.c)
 
 # target_include_directories(container_lib PRIVATE include)
 
