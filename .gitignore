@@ -3,3 +3,5 @@ build/
 .qwe/
 
 .cache/
+
+.clang-format

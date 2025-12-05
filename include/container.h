@@ -10,46 +10,44 @@ typedef struct String String;
 #define CONCAT(a, b) CONCAT2(a, b)
 
 // Wrapper definition for vector_init
-Vector* vector_init_impl(size_t element_size);
-#define vector_init(TYPE) \
-	vector_init_impl(sizeof(TYPE))
+Vector *vector_init_impl(size_t element_size);
+#define vector_init(TYPE) vector_init_impl(sizeof(TYPE))
 
 // Wrapper definition for append_impl
-void append_impl(Vector* v, const void* element);
+void append_impl(Vector *v, const void *element);
 // will be used for appending values directly
-#define append(type, vec, value)                        \
-    do {                                                      \
-        type CONCAT(_tmp_, __LINE__) = (value);               \
-        append_impl((vec), &CONCAT(_tmp_, __LINE__));         \
-    } while (0)
-
+#define append(type, vec, value)                                               \
+	do {                                                                       \
+		type CONCAT(_tmp_, __LINE__) = (value);                                \
+		append_impl((vec), &CONCAT(_tmp_, __LINE__));                          \
+	} while (0)
 
 // Wrapper definition for at_impl
-void* at_impl(Vector* vector, int pos);
-#define at(TYPE, vec, pos) (*(TYPE*)at_impl((vec), (pos)))
+void *at_impl(Vector *vector, int pos);
+#define at(TYPE, vec, pos) (*(TYPE *)at_impl((vec), (pos)))
 
 // Wrapper definition for pop_impl
-void* pop_impl(Vector* vector);
-#define pop(TYPE, vec) (*(TYPE*)pop_impl((vec)))
+void *pop_impl(Vector *vector);
+#define pop(TYPE, vec) (*(TYPE *)pop_impl((vec)))
 
 // Wrapper definition for replace_at_impl
-void replace_at_impl(Vector* vector, int pos, const void* value);
+void replace_at_impl(Vector *vector, int pos, const void *value);
 // will be used for appending values directly
-#define replace_at(type, vec, pos, value)                        \
-    do {                                                      \
-        type CONCAT(_tmp_, __LINE__) = (value);               \
-        replace_at_impl((vec), (pos), &CONCAT(_tmp_, __LINE__));         \
-    } while (0)
+#define replace_at(type, vec, pos, value)                                      \
+	do {                                                                       \
+		type CONCAT(_tmp_, __LINE__) = (value);                                \
+		replace_at_impl((vec), (pos), &CONCAT(_tmp_, __LINE__));               \
+	} while (0)
 
-int length(Vector* vector);
+int length(Vector *vector);
 
 // Frees underlying data structure
-void vector_free(Vector* vector);
+void vector_free(Vector *vector);
 
-String* string_from(char* str);
-String* string_concat(String* str1, String* str2);
-void string_free(String* str);
-int string_len(String* str);
-char* string(String* st);
+String *string_from(char *str);
+String *string_concat(String *str1, String *str2);
+void string_free(String *str);
+int string_len(String *str);
+char *string(String *st);
 
 #endif // CONTAINER_H
