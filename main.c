@@ -50,7 +50,7 @@ int main() {
 	// string_free(newStr);
 	// printf("\nString length: %d", string_len(st));
 
-	Arena *arena = arena_init(1024);
+	Arena *arena = arena_init(1000);
 	float *a = (float *)arena_alloc(arena, sizeof(float));
 	float *b = (float *)arena_alloc(arena, sizeof(float));
 
