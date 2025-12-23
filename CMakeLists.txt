@@ -14,8 +14,8 @@ set(CMAKE_C_FLAGS "-g")
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
-add_library(container_lib STATIC lib/c_vector.c lib/c_string.c lib/arena.c)
+add_library(container_lib STATIC lib/c_vector.c lib/c_string.c)
 
-# target_include_directories(container_lib PRIVATE include)
+target_include_directories(container_lib PRIVATE include)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE container_lib)
