@@ -20,12 +20,12 @@ struct AlignMax {
 
 #define MAX_ALIGN offsetof(struct AlignMax, m)
 
-typedef struct Vector {
+struct Vector {
 	size_t element_size;
 	int capacity;
 	int length;
 	char *items;
-} Vector;
+};
 
 void *m_align_alloc(size_t capacity) {
 	size_t alignment;
