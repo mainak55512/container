@@ -4,7 +4,6 @@
 #include <stddef.h>
 
 typedef struct Vector Vector;
-typedef struct String String;
 
 #define CONCAT2(a, b) a##b
 #define CONCAT(a, b) CONCAT2(a, b)
@@ -43,11 +42,5 @@ int length(Vector *vector);
 
 // Frees underlying data structure
 void vector_free(Vector *vector);
-
-String *string_from(char *str);
-String *string_concat(String *str1, String *str2);
-void string_free(String *str);
-int string_len(String *str);
-char *string(String *st);
 
 #endif // CONTAINER_H
