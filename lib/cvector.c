@@ -27,7 +27,7 @@ struct Vector {
 	char *items;
 };
 
-void *m_align_alloc(size_t capacity) {
+void *mem_align_alloc(size_t capacity) {
 	size_t alignment;
 	size_t header_size;
 	size_t total_size;
@@ -83,7 +83,7 @@ void *m_align_alloc(size_t capacity) {
 	return (void *)aligned_ptr;
 }
 
-void m_align_free(void *ptr) {
+void mem_align_free(void *ptr) {
 	char **head;
 	void *origin;
 
@@ -107,21 +107,21 @@ void m_align_free(void *ptr) {
 	free(origin);
 }
 
-void *m_align_realloc(void *ptr, size_t old_size, size_t new_size) {
+void *mem_align_realloc(void *ptr, size_t old_size, size_t new_size) {
 	void *new_ptr;
 	size_t copy_size;
 
 	/* If ptr is NULL, behave like malloc */
 	if (ptr == NULL) {
-		return m_align_alloc(new_size);
+		return mem_align_alloc(new_size);
 	}
 
 	if (new_size == -1) {
-		m_align_free(ptr);
+		mem_align_free(ptr);
 		return NULL;
 	}
 
-	new_ptr = m_align_alloc(new_size);
+	new_ptr = mem_align_alloc(new_size);
 	if (new_ptr == NULL) {
 		return NULL; /* Keep old ptr valid on failure */
 	}
@@ -129,13 +129,13 @@ void *m_align_realloc(void *ptr, size_t old_size, size_t new_size) {
 	copy_size = old_size < new_size ? old_size : new_size;
 	memcpy(new_ptr, ptr, copy_size);
 
-	m_align_free(ptr);
+	mem_align_free(ptr);
 
 	return new_ptr;
 }
 
 Vector *vector_init_impl(size_t element_size) {
-	Vector *vector = (Vector *)m_align_alloc(sizeof(Vector));
+	Vector *vector = (Vector *)mem_align_alloc(sizeof(Vector));
 	vector->items = NULL;
 	vector->element_size = element_size;
 	vector->capacity = 1;
@@ -145,11 +145,11 @@ Vector *vector_init_impl(size_t element_size) {
 
 void append_impl(Vector *vector, const void *element) {
 	if (vector->items == NULL) {
-		vector->items = (char *)m_align_alloc(vector->element_size);
+		vector->items = (char *)mem_align_alloc(vector->element_size);
 		vector->capacity = 1;
 	} else if (vector->length >= vector->capacity) {
 		vector->capacity *= 2;
-		vector->items = (char *)m_align_realloc(
+		vector->items = (char *)mem_align_realloc(
 			vector->items, (vector->capacity / 2) * vector->element_size,
 			vector->capacity * vector->element_size);
 	}
@@ -183,6 +183,6 @@ void replace_at_impl(Vector *vector, int pos, const void *value) {
 int length(Vector *vector) { return vector->length; }
 
 void vector_free(Vector *vector) {
-	m_align_free(vector->items);
-	m_align_free(vector);
+	mem_align_free(vector->items);
+	mem_align_free(vector);
 }
