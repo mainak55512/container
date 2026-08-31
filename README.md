@@ -8,6 +8,32 @@ This library provides a simple, generic dynamic array implementation (similar to
 
 The main structure for the dynamic array is opaque (`Vector*`). All core functionalities are exposed via **macros** to handle size calculations and type casting automatically, providing an interface close to a built-in container.
 
+
+### Build Steps
+
+You can add the library in your **[flint](https://github.com/mainak55512/flint)** project directly:
+
+```bash
+flint add https://github.com/mainak55512/container
+```
+Or if you are using CMake, follow the below steps:
+
+1. Clone the repository and navigate to the project folder.
+2. Create a build directory:
+   ```bash
+   mkdir build && cd build
+
+    ```
+
+3. Generate the build files and compile:
+```bash
+cmake ..
+make
+
+```
+
+This will produce a static library named `libccontainer.a` from the source file `lib/cvector.c`.
+
 ### Key Functions and Macros
 
 | Function/Macro | Description | C Signature (as seen by user) |
