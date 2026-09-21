@@ -14,7 +14,7 @@ The main structure for the dynamic array is opaque (`Vector*`). All core functio
 You can add the library in your **[flint](https://github.com/mainak55512/flint)** project directly:
 
 ```bash
-flint add https://github.com/mainak55512/container
+flint add https://github.com/mainak55512/container@v0.1.1
 ```
 Or if you are using CMake, follow the below steps:
 
