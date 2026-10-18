@@ -1,16 +1,9 @@
 {
     "project_name": "container",
     "project_language": "c",
-    "version": "v0.1.1",
+    "version": "v0.1.2",
     "compiler_path": "gcc",
     "executable": false,
-    "include_paths": [
-        "include"
-    ],
-    "src": [
-        "lib"
-    ],
-    "flags": [],
-    "lib_links": [],
+    "exclude_dirs": ["build"],
     "dependencies": {}
 }

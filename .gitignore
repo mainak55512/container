@@ -1,5 +1,7 @@
 build/
 
+deps/
+
 .qwe/
 
 .cache/
