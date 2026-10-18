@@ -1,14 +1,7 @@
 [
-{
-  "directory": "/home/mainak/programs/C_Container/build",
-  "command": "/usr/bin/clang-18  -I/home/mainak/programs/C_Container/include  -o CMakeFiles/container_lib.dir/lib/container.c.o -c /home/mainak/programs/C_Container/lib/container.c",
-  "file": "/home/mainak/programs/C_Container/lib/container.c",
-  "output": "CMakeFiles/container_lib.dir/lib/container.c.o"
-},
-{
-  "directory": "/home/mainak/programs/C_Container/build",
-  "command": "/usr/bin/clang-18  -I/home/mainak/programs/C_Container/include  -o CMakeFiles/container.dir/main.c.o -c /home/mainak/programs/C_Container/main.c",
-  "file": "/home/mainak/programs/C_Container/main.c",
-  "output": "CMakeFiles/container.dir/main.c.o"
-}
+    {
+        "directory": "/home/mainak/programs/C_Container",
+        "file": "lib/cvector.c",
+        "command": "gcc -c lib/cvector.c -Iinclude -o lib/cvector.c.o"
+    }
 ]

@@ -1,9 +1,20 @@
 {
     "project_name": "container",
     "project_language": "c",
-    "version": "v0.1.2",
     "compiler_path": "gcc",
+    "version": "v0.1.2",
     "executable": false,
-    "exclude_dirs": ["build"],
-    "dependencies": {}
+    "flags": [
+        "-O3",
+        "-Wall"
+    ],
+    "lib_links": [],
+    "excludes": [],
+    "exclude_dirs": [
+        "build"
+    ],
+    "exclude_exception": [],
+    "tmpl": {},
+    "dependencies": {},
+    "sync": {}
 }
