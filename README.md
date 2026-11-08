@@ -14,7 +14,7 @@ The main structure for the dynamic array is opaque (`Vector*`). All core functio
 You can add the library in your **[flint](https://github.com/mainak55512/flint)** project directly:
 
 ```bash
-flint add https://github.com/mainak55512/container@v0.1.1
+flint add https://github.com/mainak55512/container@v0.2.0
 ```
 Or if you are using CMake, follow the below steps:
 
@@ -38,13 +38,13 @@ This will produce a static library named `libccontainer.a` from the source file 
 
 | Function/Macro | Description | C Signature (as seen by user) |
 | :--- | :--- | :--- |
-| `vector_init` | Initializes a new `Vector`. Must be provided the **type** of element it will store. | `Vector* vector_init(TYPE)` |
+| `vector_init` | Initializes a new `Vector`. Must be provided the **type** of element it will store. It takes Arena * as the second argument | `Vector* vector_init(TYPE, Arena *)` |
 | `append` | Appends a **copy** of the provided `value` to the end of the `Vector`. | `append(type, vec, value)` |
 | `at` | Accesses the element at the specified `pos`. Returns a **dereferenceable value** of the expected type. | `TYPE at(TYPE, vec, pos)` |
 | `pop` | Removes and returns the **last element** of the `Vector`. | `TYPE pop(TYPE, vec)` |
 | `replace_at` | Replaces the element at the specified `pos` with a **copy** of the new `value`. | `replace_at(type, vec, pos, value)` |
 | `length` | Returns the current number of elements in the `Vector`. | `int length(Vector* vector)` |
-| `vector_free` | Releases the memory associated with the `Vector` and its contents. | `void vector_free(Vector* vector)` |
+| `vector_free` | Releases the memory associated with the `Vector` and its contents. Not required if useing Arena | `void vector_free(Vector **vector)` |
 
 ---
 
@@ -55,8 +55,10 @@ This will produce a static library named `libccontainer.a` from the source file 
 #include <container.h>
 
 int main() {
+    Arena *arena = arena_init(1024);
+
     // 1. Initialize a vector to hold integers
-    Vector* int_vec = vector_init(int);
+    Vector* int_vec = vector_init(int, arena); // vector_init(int, NULL) if want to manage memory manually
     
     // 2. Append values
     append(int, int_vec, 10);
@@ -75,8 +77,10 @@ int main() {
     printf("Popped element: %d\n", last_element);           // Output: 30
     printf("New Length: %d\n", length(int_vec));            // Output: 2
 
-    // 5. Free the vector memory
+    // 5. Free the vector memory if not initialized with Arena, else not required
     vector_free(int_vec);
+
+    arena_free(&arena);
     
     return 0;
 }
