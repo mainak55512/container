@@ -2,7 +2,7 @@
     "project_name": "container",
     "project_language": "c",
     "compiler_path": "gcc",
-    "version": "v0.1.2",
+    "version": "v0.2.0",
     "executable": false,
     "flags": [
         "-O3"
@@ -14,6 +14,12 @@
     ],
     "exclude_exception": [],
     "tmpl": {},
-    "dependencies": {},
+    "dependencies": {
+        "arena": {
+            "version": "v0.1.1",
+            "remote": "https://github.com/mainak55512/arena",
+            "hash": "b1659723d4d45a7eba5a8b12648a22f0212da17e"
+        }
+    },
     "sync": {}
 }

@@ -1,1 +1,7 @@
-{}
+{
+    "arena": {
+        "version": "v0.1.1",
+        "remote": "https://github.com/mainak55512/arena",
+        "hash": "b1659723d4d45a7eba5a8b12648a22f0212da17e"
+    }
+}

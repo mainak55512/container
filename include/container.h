@@ -1,6 +1,7 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
 
+#include <arena.h>
 #include <stddef.h>
 
 typedef struct Vector Vector;
@@ -9,8 +10,9 @@ typedef struct Vector Vector;
 #define CONCAT(a, b) CONCAT2(a, b)
 
 // Wrapper definition for vector_init
-Vector *vector_init_impl(size_t element_size);
-#define vector_init(TYPE) vector_init_impl(sizeof(TYPE))
+// Pass an Arena* (or NULL to allocate on heap via m_align_alloc)
+Vector *vector_init_impl(Arena *arena, size_t element_size);
+#define vector_init(TYPE, arena) vector_init_impl((arena), sizeof(TYPE))
 
 // Wrapper definition for append_impl
 void append_impl(Vector *v, const void *element);
@@ -31,7 +33,7 @@ void *pop_impl(Vector *vector);
 
 // Wrapper definition for replace_at_impl
 void replace_at_impl(Vector *vector, int pos, const void *value);
-// will be used for appending values directly
+// will be used for replacing values directly
 #define replace_at(type, vec, pos, value)                                      \
 	do {                                                                       \
 		type CONCAT(_tmp_, __LINE__) = (value);                                \
@@ -40,7 +42,8 @@ void replace_at_impl(Vector *vector, int pos, const void *value);
 
 int length(Vector *vector);
 
-// Frees underlying data structure
+// Frees underlying data structure if initialized with arena == NULL.
+// Not required when using an Arena (safe no-op that sets *vector = NULL).
 void vector_free(Vector **vector);
 
 #endif // CONTAINER_H

@@ -2,6 +2,11 @@
     {
         "directory": "/home/mainak/programs/C_Container",
         "file": "lib/cvector.c",
-        "command": "gcc -c lib/cvector.c -Iinclude -o lib/cvector.c.o"
+        "command": "gcc -c lib/cvector.c -Iinclude -Ideps/arena/include -o lib/cvector.c.o"
+    },
+    {
+        "directory": "/home/mainak/programs/C_Container",
+        "file": "deps/arena/lib/arena.c",
+        "command": "gcc -c deps/arena/lib/arena.c -Iinclude -Ideps/arena/include -o deps/arena/lib/arena.c.o"
     }
 ]
