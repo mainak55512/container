@@ -64,7 +64,7 @@ static char *vec_slot_ptr(Vector *vector, int pos) {
 	return vector->segments[seg_idx] + ((size_t)offset * vector->element_size);
 }
 
-Vector *vector_init_impl(Arena *arena, size_t element_size) {
+void *vector_init_impl(Arena *arena, size_t element_size) {
 	Vector *vector = (Vector *)vec_alloc(arena, sizeof(Vector));
 	if (vector == NULL) {
 		return NULL;
@@ -78,7 +78,10 @@ Vector *vector_init_impl(Arena *arena, size_t element_size) {
 	return vector;
 }
 
-void append_impl(Vector *vector, const void *element) {
+void append_impl(Vector *vector, const void *element, size_t element_size) {
+	if (vector->element_size == 0) {
+		vector->element_size = element_size;
+	}
 	uint32_t pos = (uint32_t)vector->length;
 	uint32_t shifted = pos + VEC_BASE_CAP;
 	uint32_t bit = 31 - vec_clz32(shifted);
@@ -113,15 +116,9 @@ void *at_impl(Vector *vector, int pos) {
 	return NULL;
 }
 
-void replace_at_impl(Vector *vector, int pos, const void *value) {
-	if (pos >= 0 && pos < vector->length) {
-		memcpy(vec_slot_ptr(vector, pos), value, vector->element_size);
-	}
-}
+int length_impl(Vector *vector) { return vector->length; }
 
-int length(Vector *vector) { return vector->length; }
-
-void vector_free(Vector **vector) {
+void vector_free_impl(Vector **vector) {
 	int i;
 	if (vector != NULL && *vector != NULL) {
 		if ((*vector)->arena == NULL) {
