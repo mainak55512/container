@@ -1,6 +1,6 @@
 # Simple C Vector Container
 
-This library provides a generic, type-safe dynamic array implementation for C, backed by an **exponentially segmented list** and integrated with an **Arena allocator**. Using C preprocessor macros and compile-time type deduction (`typeof`), it lets you create resizable arrays of any data type (`int`, `char *`, structs, etc.) with **$O(1)$ branchless indexing**, **zero-copy resizing**, and **pointer stability**.
+This library provides a generic, type-safe dynamic array implementation for C, backed by an **exponentially segmented list** and integrated with an **Arena allocator**. Using C preprocessor macros and compile-time type deduction (`typeof`), it lets you create resizable arrays of any data type (`int`, `char *`, structs, etc.) with **`O(1)` branchless indexing**, **zero-copy resizing**, and **pointer stability**.
 
 ---
 
